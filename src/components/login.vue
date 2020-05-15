@@ -92,7 +92,7 @@ export default {
 }
 .title{
   color: #0BA1DC;
-  font-family:Adobe 黑体;
+  font-family: serif;
   font-size:24px;
   text-align:left;
   margin-top: 40px;
