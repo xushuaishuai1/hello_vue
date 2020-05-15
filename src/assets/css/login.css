@@ -32,9 +32,9 @@
 #login-div:after{
     content: "";
     position: absolute;
-    bottom: -32px;
-    right: -69px;
-    width: 18%;
+    bottom: -50px;
+    right: -100px;
+    width: 100px;
     height: 100%;
     background-color: black;
     opacity:.2;
@@ -42,10 +42,21 @@
     -moz-transform: skew(0deg, 42deg);
     -webkit-transform: skew(0deg, 42deg);
     -o-transform: skew(0deg, 42deg);
-    transform: skew(0deg, 42deg);
+    transform: skew(0deg, 45deg);
 }
 #login-div:before{
     content: "";
+    position: absolute;
+    bottom: -50.787px;
+    right:-112.8px;
+    width: 0;
+    height: 0;
+    opacity:.2;
+    border-left: 372.02px solid transparent;
+    border-right: 118.3px solid transparent;
+    border-bottom: 77.49px solid black;
+    transform:rotate(11.77deg);
+/*    content: "";
     position: absolute;
     bottom: -63px;
     left:35px;
@@ -57,7 +68,7 @@
     -moz-transform: skew(48deg, 0deg);
     -webkit-transform: skew(48deg, 0deg);
     -o-transform: skew(48deg, 0deg);
-    transform: skew(48deg, 0deg);
+    transform: skew(48deg, 0deg);*/
 }
 
 
