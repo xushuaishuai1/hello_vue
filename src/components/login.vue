@@ -15,8 +15,8 @@
               <div class="layui-form">
                 <div>
                   <el-form :model="ruleForm" :rules="rules" ref="ruleForm"  autocomplete="on" label-position="left">
-                    <div class="title-container">
-                      <h3 class="title" style="color: #0BA1DC;font-family:Adobe 黑体;font-size:24px">用户登录</h3>
+                    <div>
+                      <h3 class="title">用户登录</h3>
                     </div>
                     <el-form-item prop="username">
                       <el-input v-model="ruleForm.username" placeholder="用户名" class="loginInput" prefix-icon="el-icon-user"></el-input>
@@ -89,6 +89,13 @@ export default {
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
+}
+.title{
+  color: #0BA1DC;
+  font-family:Adobe 黑体;
+  font-size:24px;
+  text-align:left;
+  margin-top: 40px;
 }
 </style>
 
