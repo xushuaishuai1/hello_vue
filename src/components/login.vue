@@ -94,11 +94,12 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
-        console.log(this.ruleForm.username);
-        console.log(this.ruleForm.password);
-        console.log(this.ruleForm.verifyCode);
+        let param = new URLSearchParams()
+        param.append('username', this.ruleForm.username)
+        param.append('password',this.ruleForm.password)
+        param.append('verifyCode',this.ruleForm.verifyCode)
         if (valid) {
-            this.$http.post('/login',{'username':this.ruleForm.username,'password':this.ruleForm.password,'verifyCode':this.ruleForm.verifyCode})
+            this.$http.post('/login',param)
               .then(response => {
                 console.log(response.data);
                 var data = response.data;
