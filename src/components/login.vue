@@ -25,8 +25,17 @@
                       <el-input type="password"  v-model="ruleForm.password" autocomplete="off" placeholder="密码"  prefix-icon="el-icon-lock"></el-input>
                     </el-form-item>
                     <el-form-item prop="verifyCode" style="text-align:left;">
-                      <el-input  v-model="ruleForm.verifyCode" placeholder="验证码" class="codeinput" prefix-icon="el-icon-s-claim"></el-input>
-                      <img class="codeimg" id="codeimg" v-bind:src="codeimgsrc"/>
+                      <el-row>
+                            <el-col :xs="17" :sm="17" :md="17" :lg="17" :xl="17">
+                                  <el-input  v-model="ruleForm.verifyCode" placeholder="验证码"  prefix-icon="el-icon-s-claim"></el-input>
+                            </el-col>
+                            <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">&nbsp;</el-col>
+                            <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
+                                  <img class="codeimg" id="codeimg" v-bind:src="codeimgsrc"/>
+                            </el-col>
+                      </el-row>
+                      
+                     
                     </el-form-item>
                     <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('ruleForm')">立即登录</el-button>
                   </el-form>
@@ -48,7 +57,7 @@ export default {
   name: "Login",
   data() {
     return {
-      codeimgsrc: + require("../assets/images/login1.jpeg"),
+      codeimgsrc:require("../assets/images/login1.jpeg"),
       backgroundImage: {
         backgroundImage: "url(" + require("../assets/images/login1.jpeg") + ")",
         "text-align": "center",
@@ -92,6 +101,8 @@ export default {
   }
 };
 
+// this.codeimgsrc = "/11/22";
+
 // function initCode() {
 //                 $view.find('#codeimg').attr("src", ctx + "images/captcha?data=" + new Date().getTime());
 //             }
@@ -109,13 +120,12 @@ export default {
   text-align:left;
   margin-top: 40px;
 }
-.codeinput{
-  width: 70%;
-  padding-left:0px;
-}
 .codeimg{
-  width:28%;
-  padding-right: 0px;
+  height: 40px;
+  line-height: 40px;
+  margin-right: 1px;
+  border: none;
+  width: 100%;
 }
 </style>
 
