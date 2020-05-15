@@ -33,5 +33,5 @@
   5.axios开发环境跨域解决看config/index.js里面proxyTable
 
 四.遗留问题
-  1.生产环境跨域还未解决1
+  1.生产环境跨域还未解决
 
