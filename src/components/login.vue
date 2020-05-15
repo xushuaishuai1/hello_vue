@@ -24,6 +24,10 @@
                     <el-form-item prop="password">
                       <el-input type="password"  v-model="ruleForm.password" autocomplete="off" placeholder="密码"  prefix-icon="el-icon-lock"></el-input>
                     </el-form-item>
+                    <el-form-item prop="verifyCode">
+                      <el-input  v-model="ruleForm.verifyCode" placeholder="验证码" class="loginInput codeinput" prefix-icon="el-icon-s-claim"></el-input>
+                      <img class="codeimg" id="codeimg"/>
+                    </el-form-item>
                     <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('ruleForm')">立即登录</el-button>
                   </el-form>
                 </div>
@@ -66,6 +70,10 @@ export default {
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },
           { min: 1, max: 50, message: "长度在 1 到 50 个字符", trigger: "blur" }
+        ],
+        verifyCode: [
+          { required: true, message: "请输入验证码", trigger: "blur" },
+          { min: 1, max: 4, message: "长度在 1 到 4 个字符", trigger: "blur" }
         ]
       }
     };
@@ -96,6 +104,14 @@ export default {
   font-size:24px;
   text-align:left;
   margin-top: 40px;
+}
+.codeinput{
+  width: 70%;
+  padding-left:0px;
+}
+.codeimg{
+  width:28%;
+  padding-right: 0px;
 }
 </style>
 
