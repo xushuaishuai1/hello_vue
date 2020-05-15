@@ -31,7 +31,7 @@
                             </el-col>
                             <el-col :xs="1" :sm="1" :md="1" :lg="1" :xl="1">&nbsp;</el-col>
                             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6">
-                                  <img class="codeimg" id="codeimg" v-bind:src="codeimgsrc"/>
+                                  <img class="codeimg" id="codeimg" v-bind:src="codeimgsrc" @click="initCode"/>
                             </el-col>
                       </el-row>
                       
@@ -53,11 +53,14 @@
   </div>
 </template>
 <script>
+
+var codeimgsrc =  "http://192.168.0.148:8080/images/captcha?data=" + new Date().getTime();//require("../assets/images/login1.jpeg");
+
 export default {
   name: "Login",
   data() {
     return {
-      codeimgsrc:require("../assets/images/login1.jpeg"),
+      codeimgsrc:codeimgsrc,
       backgroundImage: {
         backgroundImage: "url(" + require("../assets/images/login1.jpeg") + ")",
         "text-align": "center",
@@ -97,15 +100,13 @@ export default {
           return false;
         }
       });
+    },
+    initCode(){
+      //刷新验证码);
+      this.codeimgsrc="http://192.168.0.148:8080/images/captcha?data=" + new Date().getTime();
     }
   }
 };
-
-// this.codeimgsrc = "/11/22";
-
-// function initCode() {
-//                 $view.find('#codeimg').attr("src", ctx + "images/captcha?data=" + new Date().getTime());
-//             }
 </script>
 
 <style lang="scss" scoped >
@@ -118,7 +119,6 @@ export default {
   font-family: serif;
   font-size:24px;
   text-align:left;
-  margin-top: 40px;
 }
 .codeimg{
   height: 40px;
