@@ -15,6 +15,9 @@ Vue.use(Loading);//使用自定义组件
 Vue.config.productionTip = false
 Vue.use(animate);//使用animate
 Vue.use(ElementUI);//使用elementui
+
+Vue.prototype.HOST='/api'
+
 new Vue({
   el: '#app',
   store,

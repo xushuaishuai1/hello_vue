@@ -94,17 +94,27 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
+        console.log(this.ruleForm.username);
+        console.log(this.ruleForm.password);
+        console.log(this.ruleForm.verifyCode);
         if (valid) {
-            this.$http.post('/login',this.ruleForm)
+            this.$http.post('/login',{'username':this.ruleForm.username,'password':this.ruleForm.password,'verifyCode':this.ruleForm.verifyCode})
               .then(response => {
-                this.axiosMessage = response.data;
+                console.log(response.data);
+                var data = response.data;
+                if(data.code == 200){
+                  this.$router.push("index");
+                }else{
+                  this.$message.error(data.message);
+                  this.initCode();
+                }
               })
               .catch(function(error) {
-                console.log(error);
+                this.$message.error('后台接口调用失败！');
+                this.initCode();
               });
-          // this.$router.push("index");
         } else {
-          console.log("error submit!!");
+          this.$message.error('提交失败！');
           return false;
         }
       });

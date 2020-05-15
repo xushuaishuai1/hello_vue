@@ -23,11 +23,12 @@ axios.interceptors.response.use(function(response){
     return Promise.reject(error);
   }
 )
+axios.defaults.withCredentials = true // 若跨域请求需要带 cookie 身份识别
 //3.配置axios请求根路径 这里和config/index.js里面proxyTable冲突，所以不配置
 // axios.defaults.baseURL="https://www.toutiao.com";
 axios.defaults.baseURL= process.env.BASE_API;
-//4.设置axios的post默认头部信息
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+// 4.设置axios的post默认头部信息
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 //5.设置axios通用简写
 Vue.prototype.$http = axios;
 //6.请求超时
