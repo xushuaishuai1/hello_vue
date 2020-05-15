@@ -2,15 +2,8 @@
   <div>
     <el-container>
       <el-header style="width: 100%;height: 60px;line-height: 60px">
-        <div
-          style="cursor: pointer;color: #0BA1DC;font-family: 微软雅黑;font-size:23px;padding-left: 5%;"
-        >
-          <img
-            :src="require('../assets/images/logo1.png')"
-            style="width:36px;height:24px;margin-bottom:-3px;"
-          />
-          &nbsp;
-          <span>高校档案系统</span>
+        <div style="cursor: pointer;color: #0BA1DC;font-family: 微软雅黑;font-size:23px;padding-left: 5%;" >
+          <img :src="require('../assets/images/logo1.png')" style="width:36px;height:24px;margin-bottom:-3px;"/> &nbsp;<span>高校档案系统</span>
         </div>
       </el-header>
       <el-main :style="backgroundImage" id="vue-login">
@@ -20,32 +13,18 @@
             <el-col :xs="2" :sm="2" :md="2" :lg="2" :xl="2">&nbsp;</el-col>
             <el-col :xs="6" :sm="6" :md="6" :lg="6" :xl="6" class="login-div" id="login-div">
               <div class="layui-form">
-                <div class="login-container">
-                  <el-form
-                    :model="ruleForm"
-                    :rules="rules"
-                    ref="ruleForm"
-                    autocomplete="on" label-position="left"
-                    class="login-form"
-                  >
+                <div>
+                  <el-form :model="ruleForm" :rules="rules" ref="ruleForm"  autocomplete="on" label-position="left">
                     <div class="title-container">
                       <h3 class="title" style="color: #0BA1DC;font-family:Adobe 黑体;font-size:24px">用户登录</h3>
                     </div>
-
                     <el-form-item prop="username">
-                      <span class="svg-container"><i class="el-icon-user"></i></span>
-                      <el-input v-model="ruleForm.username" placeholder="用户名"></el-input>
+                      <el-input v-model="ruleForm.username" placeholder="用户名" class="loginInput" prefix-icon="el-icon-user"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
-                       <span class="svg-container"><i class="el-icon-user"></i></span>
-                      <el-input
-                        type="password"
-                        v-model="ruleForm.password"
-                        autocomplete="off"
-                        placeholder="密码"
-                      ></el-input>
+                      <el-input type="password"  v-model="ruleForm.password" autocomplete="off" placeholder="密码"  prefix-icon="el-icon-lock"></el-input>
                     </el-form-item>
-                    <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('ruleForm')">立即登录</el-button>
+                    <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('ruleForm')">立即登录</el-button>
                   </el-form>
                 </div>
               </div>
@@ -61,8 +40,6 @@
   </div>
 </template>
 <script>
-console.log("login.vue");
-
 export default {
   name: "Login",
   data() {
@@ -103,25 +80,15 @@ export default {
           return false;
         }
       });
-    },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
     }
   }
 };
 </script>
 
 <style lang="scss" scoped >
-
 .grid-content {
   border-radius: 4px;
   min-height: 36px;
 }
-.el-form-item {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.04);
-    border-radius: 5px;
-    color: #454545;
-  }
 </style>
 
