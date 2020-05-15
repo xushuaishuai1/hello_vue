@@ -19,14 +19,14 @@
                       <h3 class="title">用户登录</h3>
                     </div>
                     <el-form-item prop="username">
-                      <el-input v-model="ruleForm.username" placeholder="用户名" class="loginInput" prefix-icon="el-icon-user"></el-input>
+                      <el-input v-model="ruleForm.username" placeholder="用户名"  prefix-icon="el-icon-user"></el-input>
                     </el-form-item>
                     <el-form-item prop="password">
                       <el-input type="password"  v-model="ruleForm.password" autocomplete="off" placeholder="密码"  prefix-icon="el-icon-lock"></el-input>
                     </el-form-item>
-                    <el-form-item prop="verifyCode">
-                      <el-input  v-model="ruleForm.verifyCode" placeholder="验证码" class="loginInput codeinput" prefix-icon="el-icon-s-claim"></el-input>
-                      <img class="codeimg" id="codeimg"/>
+                    <el-form-item prop="verifyCode" style="text-align:left;">
+                      <el-input  v-model="ruleForm.verifyCode" placeholder="验证码" class="codeinput" prefix-icon="el-icon-s-claim"></el-input>
+                      <img class="codeimg" id="codeimg" v-bind:src="codeimgsrc"/>
                     </el-form-item>
                     <el-button type="primary" style="width:100%;margin-bottom:30px;" @click="submitForm('ruleForm')">立即登录</el-button>
                   </el-form>
@@ -48,7 +48,7 @@ export default {
   name: "Login",
   data() {
     return {
-      msg: "登录界面",
+      codeimgsrc: + require("../assets/images/login1.jpeg"),
       backgroundImage: {
         backgroundImage: "url(" + require("../assets/images/login1.jpeg") + ")",
         "text-align": "center",
@@ -91,6 +91,10 @@ export default {
     }
   }
 };
+
+// function initCode() {
+//                 $view.find('#codeimg').attr("src", ctx + "images/captcha?data=" + new Date().getTime());
+//             }
 </script>
 
 <style lang="scss" scoped >
