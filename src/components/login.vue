@@ -54,7 +54,7 @@
 </template>
 <script>
 
-var codeimgsrc =  "http://192.168.0.148:8080/images/captcha?data=" + new Date().getTime();//require("../assets/images/login1.jpeg");
+var codeimgsrc =  "api/images/captcha?data=" + new Date().getTime();//require("../assets/images/login1.jpeg");
 
 export default {
   name: "Login",
@@ -71,8 +71,9 @@ export default {
         "background-size": "100% 100%"
       },
       ruleForm: {
-        name: "",
-        pass: ""
+        username: "",
+        password: "",
+        verifyCode:""
       },
       rules: {
         username: [
@@ -94,7 +95,14 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$router.push("index");
+            this.$http.post('/login',this.ruleForm)
+              .then(response => {
+                this.axiosMessage = response.data;
+              })
+              .catch(function(error) {
+                console.log(error);
+              });
+          // this.$router.push("index");
         } else {
           console.log("error submit!!");
           return false;
@@ -103,7 +111,7 @@ export default {
     },
     initCode(){
       //刷新验证码);
-      this.codeimgsrc="http://192.168.0.148:8080/images/captcha?data=" + new Date().getTime();
+      this.codeimgsrc="api/images/captcha?data=" + new Date().getTime();
     }
   }
 };
