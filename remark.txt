@@ -1,0 +1,37 @@
+一.项目生成和使用
+1.新建项目
+  vue init webpack 项目名称
+2.下载包
+  npm install 或者 cnpm install 别人拿到前端代码后使用这个命令可以直接加载包 全部下载
+  npm install <package-name> -D 单独下载
+  npm i element-ui -D
+3.运行项目
+  npm run dev
+4.打包
+  npm run build
+
+二.文件目录介绍:
+  build
+  config
+  dist            项目打包存放打包生成文件
+  node_modules    依赖下载目录
+  src/assets      放静态资源  img css js等
+  src/axios       存放axios配置文件
+  src/components  放单页面，组件
+  src/filters     自定义过滤器
+  src/router      存放所有路由原始配置
+  src/store       vuex存放全局变量控制全局状态使用
+  src/App.vue     项目首页
+  src/main.js     项目全局引用配置
+  static 
+
+三.知识点
+  1.样式style 标签加scoped 代表局部样式
+  2.可以使用this.$store.dispatch('add');主动调用vuex执行，add为store/action.js里面方法名称
+  3.配置路由切换，界面滚动条回到最上面scrollBehavior:() => ({y:0})
+  4.vue中mounted页面加载时候可以获取数据
+  5.axios开发环境跨域解决看config/index.js里面proxyTable
+
+四.遗留问题
+  1.生产环境跨域还未解决
+

@@ -1,0 +1,11 @@
+<template>
+  <div>
+    进入用户详细
+    <br/>
+    {{$route.path}}
+    <br/>
+    {{$route.query}}
+    <br/>
+    {{$route.params}}
+  </div>
+</template>
