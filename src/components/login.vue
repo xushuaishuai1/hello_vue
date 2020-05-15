@@ -10,7 +10,7 @@
             style="width:36px;height:24px;margin-bottom:-3px;"
           />
           &nbsp;
-          <span>高校档案系统</span>
+          <span>高校档案系统1</span>
         </div>
       </el-header>
       <el-main :style="backgroundImage" id="vue-login">
