@@ -5,7 +5,7 @@ import user from '@/components/learn/routeLearn/user'
 import UserDetail from '@/components/learn/routeLearn/userDetail'
 import filter from '@/components/learn/filter'
 import component from '@/components/learn/component'
-import container from '@/components/learn/container'
+// import container from '@/components/learn/container'
 import component1 from '@/components/learn/component1'
 import transition from '@/components/learn/transition'
 import transition1 from '@/components/learn/transition1'
@@ -56,10 +56,10 @@ export default new Router({
           path: '/filter',
           component: filter
         },
-        {
-          path:'/container',
-          component: container
-        },
+        // {
+        //   path:'/container',
+        //   component: container
+        // },
         {
           path:'/component',
           component: component

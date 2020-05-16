@@ -1,49 +1,115 @@
 <template>
-  <div id="app" width="99%">
-    <Loading v-show="loading"></Loading>
-    <el-row style="border:1px solid black">
-      <el-col :span="4">
-        <span>Vue学习</span>&nbsp;现在数字为：{{getCount}},{{judgeOdd}}
-      </el-col>
-      <el-col :span="2">
-        <el-button type="primary" @click="getData">axios</el-button>
-      </el-col>
-      <el-col :span="8">
-        <!--自定义主键事件需要加native-->
-        <OwnButton @click.native="getData">自定义button</OwnButton>
-      </el-col>
-      <el-col :span="6">axiosMessage - > {{axiosMessage}}</el-col>
-      <el-col :span="4">
-        <el-button type="primary" @click="changeMenu">切换到过滤器</el-button>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :span="6" style="border-right:1px solid black">
-        <ul>
-          <li v-for="obj in meuns" v-bind:key="obj.id">
-            <router-link :to="obj.id">{{obj.name}}</router-link>
-          </li>
-        </ul>
-      </el-col>
-      <el-col :span="18">
+  <el-container style="height: 500px; border: 1px solid #eee">
+    <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+      <el-menu
+        default-active="1-4-1"
+        class="el-menu-vertical-demo"
+        @open="handleOpen"
+        @close="handleClose"
+        :collapse="isCollapse"
+        :router=true
+      >
+        <!-- <el-submenu index="1">
+          <template slot="title">
+            <i class="el-icon-location"></i>
+            <span slot="title">导航一</span>
+          </template>
+          <el-menu-item-group>
+            <span slot="title">分组一</span>
+            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="分组2">
+            <el-menu-item index="1-3">选项3</el-menu-item>
+          </el-menu-item-group>
+          <el-submenu index="1-4">
+            <span slot="title">选项4</span>
+            <el-menu-item index="1-4-1">选项1</el-menu-item>
+          </el-submenu>
+        </el-submenu>
+        <el-menu-item index="2">
+          <i class="el-icon-menu"></i>
+          <span slot="title">导航二</span>
+        </el-menu-item>
+        <el-menu-item index="3" disabled>
+          <i class="el-icon-document"></i>
+          <span slot="title">导航三</span>
+        </el-menu-item>
+        <el-menu-item index="4">
+          <i class="el-icon-setting"></i>
+          <span slot="title">导航四</span>
+        </el-menu-item> -->
+
+        <el-menu-item  v-for="obj in meuns" v-bind:key="obj.id" :index="obj.id" >
+          <i class="el-icon-setting"></i>
+          <span slot="title">{{obj.name}}</span>
+        </el-menu-item>
+
+
+      </el-menu>
+    </el-aside>
+
+    <el-container :style=rightStyle>
+      <el-header style="text-align: right; font-size: 12px">
+        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
+          <el-radio-button :label="false">展开</el-radio-button>
+          <el-radio-button :label="true">收起</el-radio-button>
+        </el-radio-group>
+        <el-dropdown>
+          <i class="el-icon-setting" style="margin-right: 15px"></i>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>查看</el-dropdown-item>
+            <el-dropdown-item>新增</el-dropdown-item>
+            <el-dropdown-item>删除</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
+        <span>王小虎</span>
+      </el-header>
+
+      <el-main>
         <transition enter-active-class="bounceInLeft" leave-active-class="bounceOutRight">
           <router-view class="animated"></router-view>
         </transition>
-      </el-col>
-    </el-row>
-  </div>
+      </el-main>
+    </el-container>
+  </el-container>
 </template>
+
+<style>
+.el-header {
+  background-color: #b3c0d1;
+  color: #333;
+  line-height: 60px;
+}
+
+.el-aside {
+  color: #333;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+  width: 200px;
+  min-height: 400px;
+}
+</style>
+
 <script>
-import OwnButton from "@/components/learn/ownButton";
-import {mapGetters,mapActions} from 'vuex'
 export default {
-  name: "App",
   data() {
+    const item = {
+      date: "2016-05-02",
+      name: "王小虎",
+      address: "上海市普陀区金沙江路 1518 弄"
+    };
     return {
+      tableData: Array(20).fill(item),
+      isCollapse: false,
+      rightStyle: {
+        'margin-left':'0px',
+        'background-color':'#EEF1F6'
+      },
       meuns: [
         { id: "/user", name: "路由" },
         { id: "/filter", name: "过滤器" },
-        { id: "/container", name: "前台菜单模板" },
+        // { id: "/container", name: "前台菜单模板" },
         { id: "/component", name: "组件通信" },
         { id: "/component1", name: "组件通信推荐" },
         { id: "/transition", name: "动画" },
@@ -52,68 +118,25 @@ export default {
         { id: "/vuexLearn" , name: "vuex学习"},
         { id: "/commonForm" , name: "form表单"},
         { id: "/table" , name: "table"}
-      ],
-      axiosMessage: "无数据"
+      ]
     };
   },
-  components: {
-    OwnButton
+  watch:{
+    isCollapse(){
+      if(this.isCollapse == true){
+        this.rightStyle['margin-left']='-135px';
+      }else{
+       this.rightStyle['margin-left']='-0px';
+      }
+    }
   },
   methods: {
-    getData() {
-      // this.axios
-      this.$http
-        .get("/search/?keyword=aa")
-        .then(response => {
-          this.axiosMessage = response.data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    changeMenu() {
-      this.$router.push({ path: "filter" });
-      // this.$router.push('filter');
-      //this.$router.push(path):相当于点击路由链接(可以返回到当前路由界面)
-      //this.$router.replace(path):用新路由替换当前路由(不可以返回到当前路由界面)
-      //this.$router.back(): 请求(返回)上一个记录路由
-
-      //路由参数传递 获取 方法一
-      //路由参数传递this.$router.push({name:"product‐list", query:{"name":val}});
-      //路由参数获取let searchName = this.$route.query.name
-      //路由参数传递 获取 方法二
-      //路由定义{ path:'/product/:id', name:'product', component: ProductDetail }
-      //模板使用<router‐link :to="{name:'product',params:{id:1}}">产品1连接</router‐link>
-      //获取let id = this.$route.params.id;
-    },
-    firstLoading(){
-      console.log("loading——OK");
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
     }
-  },
-  mounted(){
-    //初始化获取数据使用
-    this.firstLoading();
-  },
-  watch:{
-    //监控路由变化
-    $route:function(to,from){
-      // console.log(to);//到哪个路由
-      // console.log(from);//从哪个路由
-      //主动调用vuex执行
-      this.$store.dispatch('add');
-    }
-  },
-  computed:mapGetters([
-        'getCount',
-        'judgeOdd',
-        'loading'
-  ])
+  }
 };
 </script>
-<style scoped>
-.router-link-exact-active,
-.router-link-active {
-  font-size: 20px;
-  color: #f60;
-}
-</style>
