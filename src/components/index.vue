@@ -1,6 +1,6 @@
 <template>
-  <el-container style="height: 500px; border: 1px solid #eee">
-    <el-aside :width="asidewidth">
+  <el-container style="height:calc(100vh);border: 1px solid #eee">
+    <el-aside :style=asidewidth>
       <el-menu
         class="el-menu-vertical-demo"
         @open="handleOpen"
@@ -20,7 +20,7 @@
     </el-aside>
 
     <el-container :style=rightStyle>
-      <el-header style="text-align: right; font-size: 12px;">
+      <el-header style="text-align: right; font-size: 12px;color:#fff">
         <span style="float:left;"  @click="setIsCollapse">
              <i class="el-icon-s-fold"></i>
         </span>
@@ -65,7 +65,9 @@ export default {
     return {
       isCollapse: false,
       asidewidth:{
-        width:'200px'
+        width:'200px',
+        height:'calc(100vh)',
+        'background-color':'#333'
       },
       rightStyle: {
         // 'margin-left':'0px',
