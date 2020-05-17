@@ -12,7 +12,7 @@
         active-text-color="#ffd04b"
         router
       >
-        <el-menu-item v-for="(obj) in meuns" v-bind:key="obj.id" :index="obj.id">
+        <el-menu-item v-for="(obj) in meuns" v-bind:key="obj.id" :index="obj.id" :style="{ width: width}">
           <i :class="obj.icon"></i>
           <span slot="title">{{obj.name}}</span>
         </el-menu-item>
@@ -139,11 +139,11 @@ export default {
         transition: "width 0.5s"
       },
       rightStyle: {
-        // 'margin-left':'0px',
         "background-color": "#e0e0e0"
       },
       meuns: meuns1,
-      menusHead:menusHead
+      menusHead:menusHead,
+      width:"200px"
     };
   },
   mounted: function() {
@@ -164,9 +164,11 @@ export default {
       if (this.isCollapse) {
         this.isCollapse = false;
         this.asidewidth["width"] = "200px";
+        this.width="200px";
       } else {
         this.isCollapse = true;
         this.asidewidth["width"] = "65px";
+        this.width="65px";
       }
     },
     initMenuAndUser() {
