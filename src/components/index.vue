@@ -60,6 +60,39 @@
 </style>
 
 <script>
+
+// let meuns1= [
+//         { id: "/user", name: "路由" ,icon:"el-icon-user-solid"},
+//         { id: "/filter", name: "过滤器" ,icon:"el-icon-help"},
+//         { id: "/component", name: "组件通信" ,icon:"el-icon-s-release"},
+//         { id: "/component1", name: "组件通信推荐" ,icon:"el-icon-s-management"},
+//         { id: "/transition", name: "动画" ,icon:"el-icon-s-promotion"},
+//         { id: "/transition1", name: "动画推荐" ,icon:"el-icon-s-open"},
+//         { id: "/ownComponentUse", name: "自定义主键" ,icon:"el-icon-s-shop"},
+//         { id: "/vuexLearn" , name: "vuex学习",icon:"el-icon-s-opportunity"},
+//         { id: "/commonForm" , name: "form表单",icon:"el-icon-tickets"},
+//         { id: "/table" , name: "table",icon:"el-icon-date"}
+//       ];
+
+let meuns1= [
+        { id: "/user", name: "路由" ,icon:"el-icon-user-solid"},
+        { id: "/filter", name: "过滤器" ,icon:"el-icon-help"},
+        { id: "/component", name: "组件通信" ,icon:"el-icon-s-release"}
+      ];
+
+let meuns2= [
+        { id: "/component1", name: "组件通信推荐" ,icon:"el-icon-s-management"},
+        { id: "/transition", name: "动画" ,icon:"el-icon-s-promotion"},
+        { id: "/transition1", name: "动画推荐" ,icon:"el-icon-s-open"}
+      ];
+      
+let meuns3= [
+        { id: "/ownComponentUse", name: "自定义主键" ,icon:"el-icon-s-shop"},
+        { id: "/vuexLearn" , name: "vuex学习",icon:"el-icon-s-opportunity"},
+        { id: "/commonForm" , name: "form表单",icon:"el-icon-tickets"},
+        { id: "/table" , name: "table",icon:"el-icon-date"}
+      ];
+
 export default {
   data() {
     return {
@@ -74,18 +107,7 @@ export default {
         // 'margin-left':'0px',
         'background-color':'#e0e0e0'
       },
-      meuns: [
-        { id: "/user", name: "路由" ,icon:"el-icon-user-solid"},
-        { id: "/filter", name: "过滤器" ,icon:"el-icon-help"},
-        { id: "/component", name: "组件通信" ,icon:"el-icon-s-release"},
-        { id: "/component1", name: "组件通信推荐" ,icon:"el-icon-s-management"},
-        { id: "/transition", name: "动画" ,icon:"el-icon-s-promotion"},
-        { id: "/transition1", name: "动画推荐" ,icon:"el-icon-s-open"},
-        { id: "/ownComponentUse", name: "自定义主键" ,icon:"el-icon-s-shop"},
-        { id: "/vuexLearn" , name: "vuex学习",icon:"el-icon-s-opportunity"},
-        { id: "/commonForm" , name: "form表单",icon:"el-icon-tickets"},
-        { id: "/table" , name: "table",icon:"el-icon-date"}
-      ]
+      meuns: meuns1
     };
   },
   mounted:function(){
