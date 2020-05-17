@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height:calc(100vh);border: 1px solid #eee">
+  <el-container style="height:calc(100vh);">
     <el-aside :style=asidewidth>
       <el-menu
         class="el-menu-vertical-demo"
@@ -88,6 +88,9 @@ export default {
       ]
     };
   },
+  mounted:function(){
+    this.initMenuAndUser();
+  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -102,6 +105,16 @@ export default {
         this.isCollapse = true;
         this.asidewidth['width']='65px';
       }
+    },initMenuAndUser(){
+      // let param = new URLSearchParams()
+      // this.$http.get('/index',param)
+      //   .then(response => {
+      //     console.log(response.data);
+      //   })
+      //   .catch(function(error) {
+      //     this.$message.error('后台接口调用失败！');
+      //     this.initCode();
+      //   });
     }
   }
 };

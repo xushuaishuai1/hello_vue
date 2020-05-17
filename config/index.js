@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',// 设置打包文件相对路径
     proxyTable: {
       '/api': {//跨域解决，开发环境和生产环境
-        target: 'http://139.159.160.28:8080',//设置你调用的接口域名和端口号 别忘了加http
+        target: 'http://192.168.3.9:8080',//设置你调用的接口域名和端口号 别忘了加http
         changeOrigin: true,//允许跨域
         pathRewrite: {
           '^/api': ''//这个是定义要访问的路径，代表target，在组件使用中以api代表https://www.toutiao.com

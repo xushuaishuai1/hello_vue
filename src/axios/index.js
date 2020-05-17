@@ -18,6 +18,7 @@ axios.interceptors.request.use(function(config){
 axios.interceptors.response.use(function(response){
     //调用vuex的actions中showLoading方法显示滚动条
     store.dispatch('hideLoading');
+    //这里可以封装返回验证
     return response;
   },function(error){
     return Promise.reject(error);
