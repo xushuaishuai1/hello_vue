@@ -67,7 +67,8 @@ export default {
       asidewidth:{
         width:'200px',
         height:'calc(100vh)',
-        'background-color':'#333'
+        'background-color':'#333',
+        'transition':'width 0.5s'
       },
       rightStyle: {
         // 'margin-left':'0px',
@@ -87,17 +88,6 @@ export default {
       ]
     };
   },
-  watch:{
-    isCollapse(){
-      if(this.isCollapse == true){
-        // this.rightStyle['margin-left']='-135px';
-        this.asidewidth['width']='65px';
-      }else{
-      //  this.rightStyle['margin-left']='-0px';
-        this.asidewidth['width']='200px';
-      }
-    }
-  },
   methods: {
     handleOpen(key, keyPath) {
       console.log(key, keyPath);
@@ -105,8 +95,13 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },setIsCollapse(){
-      if(this.isCollapse) this.isCollapse=false;
-      else this.isCollapse = true;
+      if(this.isCollapse) {
+         this.isCollapse=false;
+         this.asidewidth['width']='200px';
+      } else {
+        this.isCollapse = true;
+        this.asidewidth['width']='65px';
+      }
     }
   }
 };
