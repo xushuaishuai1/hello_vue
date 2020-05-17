@@ -20,7 +20,7 @@
     </el-aside>
 
     <el-container :style=rightStyle>
-      <el-header style="text-align: right; font-size: 12px;color:#fff">
+      <el-header>
         <span style="float:left;"  @click="setIsCollapse">
              <i class="el-icon-s-fold"></i>
         </span>
@@ -56,6 +56,11 @@
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
   min-height: 400px;
+}
+.el-header{
+  text-align: right; 
+  font-size: 12px;
+  color:#fff
 }
 </style>
 
