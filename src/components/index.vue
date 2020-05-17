@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 500px; border: 1px solid #eee">
-    <el-aside width="200px">
+    <el-aside :width="asidewidth">
       <el-menu
         class="el-menu-vertical-demo"
         @open="handleOpen"
@@ -13,7 +13,7 @@
         router
       >
         <el-menu-item  v-for="(obj) in meuns" v-bind:key="obj.id" :index="obj.id">
-          <i class="el-icon-setting"></i>
+          <i :class="obj.icon"></i>
           <span slot="title">{{obj.name}}</span>
         </el-menu-item>
       </el-menu>
@@ -21,10 +21,9 @@
 
     <el-container :style=rightStyle>
       <el-header style="text-align: right; font-size: 12px;">
-        <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-          <el-radio-button :label="false">展开</el-radio-button>
-          <el-radio-button :label="true">收起</el-radio-button>
-        </el-radio-group>
+        <span style="float:left;"  @click="setIsCollapse">
+             <i class="el-icon-s-fold"></i>
+        </span>
         <el-dropdown>
           <i class="el-icon-setting" style="margin-right: 15px"></i>
           <el-dropdown-menu slot="dropdown">
@@ -65,30 +64,35 @@ export default {
   data() {
     return {
       isCollapse: false,
+      asidewidth:{
+        width:'200px'
+      },
       rightStyle: {
-        'margin-left':'0px',
+        // 'margin-left':'0px',
         'background-color':'#e0e0e0'
       },
       meuns: [
-        { id: "/user", name: "路由" },
-        { id: "/filter", name: "过滤器" },
-        { id: "/component", name: "组件通信" },
-        { id: "/component1", name: "组件通信推荐" },
-        { id: "/transition", name: "动画" },
-        { id: "/transition1", name: "动画推荐" },
-        { id: "/ownComponentUse", name: "自定义主键" },
-        { id: "/vuexLearn" , name: "vuex学习"},
-        { id: "/commonForm" , name: "form表单"},
-        { id: "/table" , name: "table"}
+        { id: "/user", name: "路由" ,icon:"el-icon-user-solid"},
+        { id: "/filter", name: "过滤器" ,icon:"el-icon-help"},
+        { id: "/component", name: "组件通信" ,icon:"el-icon-s-release"},
+        { id: "/component1", name: "组件通信推荐" ,icon:"el-icon-s-management"},
+        { id: "/transition", name: "动画" ,icon:"el-icon-s-promotion"},
+        { id: "/transition1", name: "动画推荐" ,icon:"el-icon-s-open"},
+        { id: "/ownComponentUse", name: "自定义主键" ,icon:"el-icon-s-shop"},
+        { id: "/vuexLearn" , name: "vuex学习",icon:"el-icon-s-opportunity"},
+        { id: "/commonForm" , name: "form表单",icon:"el-icon-tickets"},
+        { id: "/table" , name: "table",icon:"el-icon-date"}
       ]
     };
   },
   watch:{
     isCollapse(){
       if(this.isCollapse == true){
-        this.rightStyle['margin-left']='-135px';
+        // this.rightStyle['margin-left']='-135px';
+        this.asidewidth['width']='65px';
       }else{
-       this.rightStyle['margin-left']='-0px';
+      //  this.rightStyle['margin-left']='-0px';
+        this.asidewidth['width']='200px';
       }
     }
   },
@@ -98,6 +102,9 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },setIsCollapse(){
+      if(this.isCollapse) this.isCollapse=false;
+      else this.isCollapse = true;
     }
   }
 };
