@@ -54,7 +54,7 @@
 </template>
 <script>
 
-var codeimgsrc =  "api/images/captcha?data=" + new Date().getTime();//require("../assets/images/login1.jpeg");
+var codeimgsrc =  "api/vue/images/captcha?data=" + new Date().getTime();//require("../assets/images/login1.jpeg");
 
 export default {
   name: "Login",
@@ -99,7 +99,7 @@ export default {
         param.append('password',this.ruleForm.password)
         param.append('verifyCode',this.ruleForm.verifyCode)
         if (valid) {
-            this.$http.post('/login',param)
+            this.$http.post('/vue/login',param)
               .then(response => {
                 console.log(response.data);
                 var data = response.data;
@@ -122,7 +122,7 @@ export default {
     },
     initCode(){
       //刷新验证码);
-      this.codeimgsrc="api/images/captcha?data=" + new Date().getTime();
+      this.codeimgsrc="api/vue/images/captcha?data=" + new Date().getTime();
     }
   }
 };
