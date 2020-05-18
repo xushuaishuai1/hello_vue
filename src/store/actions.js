@@ -33,4 +33,14 @@ export default{
     }) => {
         commit(types.HIDELOADING)
     },
+    addUserKey:({
+        commit
+    },data) => {
+        commit(types.ADDUSERKEY,data)
+    },
+    addUser:({
+        commit
+    },data) => {
+        commit(types.ADDUSER,data)
+    },
 }

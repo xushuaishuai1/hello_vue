@@ -50,7 +50,7 @@
                   <el-dropdown-item>删除</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
-              <span>王小虎</span>
+              <span>{{getUser.nikeName}}</span>
           </el-col>
         </el-row>
       </el-header>
@@ -85,19 +85,7 @@
 </style>
 
 <script>
-// let meuns1= [
-//         { id: "/user", name: "路由" ,icon:"el-icon-user-solid"},
-//         { id: "/filter", name: "过滤器" ,icon:"el-icon-help"},
-//         { id: "/component", name: "组件通信" ,icon:"el-icon-s-release"},
-//         { id: "/component1", name: "组件通信推荐" ,icon:"el-icon-s-management"},
-//         { id: "/transition", name: "动画" ,icon:"el-icon-s-promotion"},
-//         { id: "/transition1", name: "动画推荐" ,icon:"el-icon-s-open"},
-//         { id: "/ownComponentUse", name: "自定义主键" ,icon:"el-icon-s-shop"},
-//         { id: "/vuexLearn" , name: "vuex学习",icon:"el-icon-s-opportunity"},
-//         { id: "/commonForm" , name: "form表单",icon:"el-icon-tickets"},
-//         { id: "/table" , name: "table",icon:"el-icon-date"}
-//       ];
-
+import {mapGetters,mapActions} from 'vuex'
 let meuns1 = [
   { id: "/user", name: "路由", icon: "el-icon-user-solid" },
   { id: "/filter", name: "过滤器", icon: "el-icon-help" },
@@ -172,16 +160,19 @@ export default {
       }
     },
     initMenuAndUser() {
-      // let param = new URLSearchParams()
-      // this.$http.get('/index',param)
-      //   .then(response => {
-      //     console.log(response.data);
-      //   })
-      //   .catch(function(error) {
-      //     this.$message.error('后台接口调用失败！');
-      //     this.initCode();
-      //   });
+      this.$http.get('/vue/index?userKey='+this.getUserKey)
+        .then(response => {
+          this.$store.dispatch("addUser",response.data.data.sUserInfo);
+        })
+        .catch(function(error) {
+          this.$message.error('后台接口调用失败！');
+          this.initCode();
+        });
     }
-  }
+  },
+  computed:mapGetters([
+        'getUserKey',
+        'getUser'
+  ])
 };
 </script>

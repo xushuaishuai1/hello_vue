@@ -12,5 +12,11 @@ export default{
     },
     loading(state){
         return state.loading;
+    },
+    getUserKey(state){
+        return state.userKey;
+    },
+    getUser(state){
+        return state.user;
     }
 }

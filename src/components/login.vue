@@ -53,9 +53,10 @@
   </div>
 </template>
 <script>
-
-var codeimgsrc =  "api/vue/images/captcha?data=" + new Date().getTime();//require("../assets/images/login1.jpeg");
-
+import {mapGetters,mapActions} from 'vuex'
+//时间戳+6位随机数
+var userKey = (new Date()).getTime()+Math.random().toFixed(6).slice(-6);
+var codeimgsrc =  "api/vue/images/captcha?data=" + new Date().getTime()+"&userKey="+userKey;//require("../assets/images/login1.jpeg");
 export default {
   name: "Login",
   data() {
@@ -98,12 +99,15 @@ export default {
         param.append('username', this.ruleForm.username)
         param.append('password',this.ruleForm.password)
         param.append('verifyCode',this.ruleForm.verifyCode)
+        param.append('userKey',userKey)
         if (valid) {
             this.$http.post('/vue/login',param)
               .then(response => {
                 console.log(response.data);
                 var data = response.data;
                 if(data.code == 200){
+                  //将人员登录key放入vuex维护
+                  this.$store.dispatch("addUserKey",userKey);
                   this.$router.push("index");
                 }else{
                   this.$message.error(data.message);
@@ -122,7 +126,7 @@ export default {
     },
     initCode(){
       //刷新验证码);
-      this.codeimgsrc="api/vue/images/captcha?data=" + new Date().getTime();
+      this.codeimgsrc="api/vue/images/captcha?data=" + new Date().getTime()+"&userKey="+userKey;
     }
   }
 };
